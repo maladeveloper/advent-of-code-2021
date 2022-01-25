@@ -4,7 +4,7 @@
   "description": "Solutions to the challenges in the Advent of Code 2021",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && npm run serve",
+    "start": "rm -rf dist && npm run build && npm run serve",
     "serve": "node ./dist/index.js",
     "build": "tsc",
     "test": "jest --watchAll"
