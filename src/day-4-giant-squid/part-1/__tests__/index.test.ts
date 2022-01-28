@@ -1,5 +1,5 @@
 export {};
-const { main, checkOffInputs, findBingoedBoardIndex } = require('../index')
+const { main, findBingoedBoardIndex } = require('../index')
 const bingoChosenNums = [ 7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1]
 const bingoBoards = [ 
   [22, 13, 17, 11,  0, 8,  2, 23,  4, 24, 21,  9, 14, 16,  7, 6, 10,  3, 18,  5, 1, 12, 20, 15, 19],
@@ -32,35 +32,15 @@ const checkedBoards = [
 ]
 
 describe('main', () => {
-  it.only('returns the final score of the chosen board', () => {
+  it('returns the final score of the chosen board', () => {
     expect(main(bingoChosenNums, bingoBoards)).toEqual(finalScore)
-  })
-})
-
-describe('checkOffInputs', () => {
-  it('Checks off the input from the checked board', () => {
-    const boards = [
-      [1, 2, 3], 
-      [3, 1, 2],
-      [1, 1, 1]
-    ]
-    const checkedBoard = boards.map( board => board.map( number => false ) ) 
-    const input = 1
-
-    const expectedCheckedBoard = [
-      [true, false, false],
-      [false, true, false],
-      [true, true, true]
-    ]
-    expect( checkOffInputs( boards, checkedBoard, input)).toEqual(expectedCheckedBoard)
-    
   })
 })
 
 describe('findBingoedBoardIndex', () => {
   describe('when there is no bingo on any of the boards', () => {
     it('returns hasFoundBingo as false and null bingoBoardIndex', () => {
-      const [hasFoundBingo, bingoBoardIndex]  = findBingoedBoardIndex(checkedBoards)
+      const {hasFoundBingo, bingoBoardIndex}  = findBingoedBoardIndex(checkedBoards)
       expect(hasFoundBingo).toEqual( false)
       expect(bingoBoardIndex).toEqual( null)
     })
@@ -80,7 +60,7 @@ describe('findBingoedBoardIndex', () => {
         ...checkedBoards.slice(1, checkedBoards.length)
       ]
 
-      const [hasFoundBingo, bingoBoardIndex]  = findBingoedBoardIndex(hasHorizontalCheckedBoard)
+      const {hasFoundBingo, bingoBoardIndex}  = findBingoedBoardIndex(hasHorizontalCheckedBoard)
       expect(hasFoundBingo).toEqual(true)
       expect(bingoBoardIndex).toEqual(1)
     })
@@ -126,7 +106,7 @@ describe('findBingoedBoardIndex', () => {
         ...checkedBoards.slice(1, checkedBoards.length)
       ]
 
-      const [hasFoundBingo, bingoBoardIndex]  = findBingoedBoardIndex(hasHorizontalCheckedBoard)
+      const {hasFoundBingo, bingoBoardIndex}  = findBingoedBoardIndex(hasHorizontalCheckedBoard)
       expect(hasFoundBingo).toEqual(true)
       expect(bingoBoardIndex).toEqual(1)
     })
