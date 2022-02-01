@@ -7,6 +7,8 @@ const day5HydrothermalVenture =
   require("./src/day-5-hydrothermal-venture").present;
 
 const day6LanternFish = require("./src/day-6-lantern-fish").present;
+const day7TheTreacheryOfWhales =
+  require("./src/day-7-the-treachery-of-whales").present;
 
 const main = async () => {
   await day1SonarSweeps();
@@ -20,6 +22,8 @@ const main = async () => {
   await day5HydrothermalVenture();
 
   await day6LanternFish();
+
+  await day7TheTreacheryOfWhales();
 };
 
 main();
