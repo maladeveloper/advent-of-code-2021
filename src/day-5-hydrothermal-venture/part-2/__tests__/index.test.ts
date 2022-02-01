@@ -1,9 +1,13 @@
 export {};
-const { main, findHorizontalAndVerticalPointsCovered } = require("../index");
+const { main, findPointsCovered } = require("../index");
 const rawPointMovements = [
   [
     [0, 9],
     [5, 9],
+  ],
+  [
+    [8, 0],
+    [0, 8],
   ],
   [
     [9, 4],
@@ -18,6 +22,10 @@ const rawPointMovements = [
     [7, 4],
   ],
   [
+    [6, 4],
+    [2, 0],
+  ],
+  [
     [0, 9],
     [2, 9],
   ],
@@ -25,15 +33,23 @@ const rawPointMovements = [
     [3, 4],
     [1, 4],
   ],
+  [
+    [0, 0],
+    [8, 8],
+  ],
+  [
+    [5, 5],
+    [8, 2],
+  ],
 ];
 
 describe("main", () => {
-  it("returns the final score of the chosen board", () => {
-    expect(main(rawPointMovements)).toEqual(5);
+  it("returns the number of points that have been hit above a threshold of 2", () => {
+    expect(main(rawPointMovements)).toEqual(12);
   });
 });
 
-describe("findHorizontalAndVerticalPointsCovered", () => {
+describe("findPointsCovered", () => {
   describe("when horizontal movement is made", () => {
     it("returns an array of points that a movement hits", () => {
       const movement = { start: { x: 0, y: 9 }, end: { x: 5, y: 9 } };
@@ -45,11 +61,10 @@ describe("findHorizontalAndVerticalPointsCovered", () => {
         { x: 4, y: 9 },
         { x: 5, y: 9 },
       ];
-      expect(findHorizontalAndVerticalPointsCovered(movement)).toEqual(
-        pointsCovered
-      );
+      expect(findPointsCovered(movement)).toEqual(pointsCovered);
     });
   });
+
   describe("when vertical movement is made", () => {
     it("returns an array of points that a movement hits", () => {
       const movement = { start: { x: 7, y: 0 }, end: { x: 7, y: 4 } };
@@ -60,9 +75,20 @@ describe("findHorizontalAndVerticalPointsCovered", () => {
         { x: 7, y: 3 },
         { x: 7, y: 4 },
       ];
-      expect(findHorizontalAndVerticalPointsCovered(movement)).toEqual(
-        pointsCovered
-      );
+      expect(findPointsCovered(movement)).toEqual(pointsCovered);
+    });
+  });
+
+  describe("when diagonal movement is made", () => {
+    it("returns an array of points that a movement hits", () => {
+      const movement = { start: { x: 9, y: 7 }, end: { x: 7, y: 9 } };
+      const pointsCovered = [
+        { x: 7, y: 9 },
+        { x: 8, y: 8 },
+        { x: 9, y: 7 },
+      ];
+
+      expect(findPointsCovered(movement)).toEqual(pointsCovered);
     });
   });
 });
