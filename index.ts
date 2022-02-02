@@ -5,10 +5,11 @@ const day3BinaryDiagnostic = require("./src/day-3-binary-diagnostic").present;
 const day4GiantSquid = require("./src/day-4-giant-squid").present;
 const day5HydrothermalVenture =
   require("./src/day-5-hydrothermal-venture").present;
-
 const day6LanternFish = require("./src/day-6-lantern-fish").present;
 const day7TheTreacheryOfWhales =
   require("./src/day-7-the-treachery-of-whales").present;
+const day8SevenSegmentSearch =
+  require("./src/day-8-seven-segment-search").present;
 
 const main = async () => {
   await day1SonarSweeps();
@@ -24,6 +25,8 @@ const main = async () => {
   await day6LanternFish();
 
   await day7TheTreacheryOfWhales();
+
+  await day8SevenSegmentSearch();
 };
 
 main();
